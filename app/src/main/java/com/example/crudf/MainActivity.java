@@ -13,14 +13,22 @@ import com.example.crudf.adapter.RecyclerViewAdapter;
 import com.example.crudf.data.MyDbHelper;
 import com.example.crudf.model.Contact;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerViewAdapter recyclerViewAdapter;
     private ArrayAdapter<String> arrayAdapter;
-
+    private String getDateTime()
+    {
+        SimpleDateFormat sd=new SimpleDateFormat ("yyyy-MM-ddcHH:mm:ss", Locale.getDefault ());
+        Date d=new Date ();
+        return sd.format(d);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +50,19 @@ public class MainActivity extends AppCompatActivity {
         Contact contact2 = new Contact();
         contact2.setPhoneNumber("7070655000");
         contact2.setName("pooja");
-
-        // Adding a contact to the db
-
+           // String ss=getDateTime();
+       Contact contact3 = new Contact();
+        contact3.setFrom1 ( "main" );
+       contact3.setTo1 ( "le" );
+       contact3.setCreated_at ( getDateTime() );
+       db.addContact ( contact3 );
+        // Adding a contact to the db;
+            //String dvalue=((MainActivity)getCallingActivity ()).getDateTime;
         db.addContact(contact);
-        db.addContact(contact);
-        db.addContact(contact);
+       // db.addContact(contact);
+        //db.addContact(contact);
         db.addContact(contact2);
-        db.addContact(contact2);
+       // db.addContact(contact2);
 
 
 
